@@ -33,4 +33,22 @@ app.get("/api/recipes", async (req, res) => {
           "error": error.message
       });
   }
+}); 
+
+//  GET    | /api/recipes/:id | | recipes with a particular id if it exists | { success: Boolean, payload: recipe }       | 
+app.get("/api/recipes/:id", async (req, res) => {
+const id = req.params.id; 
+ try { 
+  const payload = `your ID is ${id}`;  
+  res.status(200).json({
+    "success": true,
+    "payload": payload
+});
+} catch (error) {
+res.status(404).json({
+    "error": error.message
+});
+
+  
+ }
 });
