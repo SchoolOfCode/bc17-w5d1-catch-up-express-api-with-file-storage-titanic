@@ -21,32 +21,33 @@ app.listen(PORT, () => {
 //GET { success: Boolean, payload: recipe array } | http://localhost:3000/api/recipes/4c848d48-b81e-4d6f-b45d-7b3090f4f8ef
 
 app.get("/api/recipes", async (req, res) => {
-  const payload = await getRecipes();
+  
   try {
-            res.status(200).json({
-          "success": true,
-          "payload": payload
-      });
+    const payload = await getRecipes();
+    res.status(200).json({
+      "success": true,
+      "payload": payload
+    });
   } catch (error) {
       res.status(404).json({
-          "error": error.message
+        "error": error.message
       });
   }
 }); 
 
-//  GET    | /api/recipes/:id | | recipes with a particular id if it exists | { success: Boolean, payload: recipe }       | 
+//  GET  | recipes with a particular id if it exists | { success: Boolean, payload: recipe }       | 
 app.get("/api/recipes/:id", async (req, res) => {
   const id = req.params.id; 
-  const payload = await getRecipeByID(id);
   try { 
-  res.status(200).json({
-    "success": true,
-    "payload": payload
+    const payload = await getRecipeByID(id);
+    res.status(200).json({
+      "success": true,
+      "payload": payload
     });
   } catch (error) {
-    res.status(404).json({
-    "error": error.message
-    });
+      res.status(404).json({
+        "error": error.message
+      });
   }
 });
 

@@ -32,10 +32,10 @@ export async function getRecipes() {
 
 // GET A RECIPE BY ID
 export async function getRecipeByID(id) {
-    const allRecipes = await readJsonFile(fileName); //array all recipes
-    const index = allRecipes.findIndex(recipe => recipe.id === id);
+    const allRecipes = await readJsonFile(fileName); // array all recipes
+    const index = allRecipes.findIndex(recipe => recipe.id === id); // find which index has matching id
 
-    if (index === -1) {
+    if (index === -1) { // If no match, findIndex returns -1
         throw new Error(`No recipe with ID ${id} found.`);
     }
 
